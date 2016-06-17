@@ -2,14 +2,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="info.androidhive.materialtabs.fragments.OneFragment">
+    tools:context="de.evolutionid.fcbmock0.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PointsFragment"
-        android:textSize="40dp"
+        android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_centerInParent="true"/>
+        android:id="@+id/textView"
+        android:layout_above="@+id/donut_progress"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="42dp" />
+
+    <com.github.lzyzsd.circleprogress.DonutProgress
+        android:id="@+id/donut_progress"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

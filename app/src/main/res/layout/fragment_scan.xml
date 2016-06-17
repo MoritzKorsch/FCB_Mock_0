@@ -2,13 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="info.androidhive.materialtabs.fragments.ScanFragment">
+    android:layout_gravity="center"
+    tools:context="de.evolutionid.fcbmock0.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ScanFragment"
-        android:textSize="40dp"
+        android:text="Ready to scan NFC Tag!"
+        android:textSize="30dp"
         android:textStyle="bold"
         android:layout_centerInParent="true"/>
 

@@ -1,5 +1,7 @@
 package de.evolutionid.fcbmock0;
 
+import android.nfc.NfcAdapter;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +19,9 @@ import de.evolutionid.fcbmock0.fragments.ScanFragment;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    NfcAdapter nfcAdapter;
+    Tag tag;
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
@@ -37,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        //Initialize the NFC component
+        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -74,4 +82,6 @@ public class MainActivity extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
+
+
 }
