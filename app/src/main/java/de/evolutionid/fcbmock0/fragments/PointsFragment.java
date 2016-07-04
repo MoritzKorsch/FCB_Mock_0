@@ -9,24 +9,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.lzyzsd.circleprogress.DonutProgress;
 
-import de.evolutionid.fcbmock0.MainActivity;
 import de.evolutionid.fcbmock0.R;
 
 public class PointsFragment extends Fragment{
 
-    DonutProgress donutProgress;
+    static int currentScore = 0;
 
-    public PointsFragment() {
-        // Required empty public constructor
-    }
+    DonutProgress donutProgress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    public PointsFragment() {
+        // Required empty public constructor
     }
 
     @Override
@@ -38,39 +38,9 @@ public class PointsFragment extends Fragment{
         }
         View view = inflater.inflate(R.layout.fragment_points, container, false);
         donutProgress = (DonutProgress) view.findViewById(R.id.donut_progress);
-        donutProgress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        donutProgress.setProgress(currentScore);
 
-                new CountDownTimer(1000, 10) {
 
-                    public void onTick(long millisUntilFinished) {
-                        donutProgress.setProgress(100 - (int)millisUntilFinished / 10);
-                    }
-
-                    public void onFinish() {
-                        donutProgress.setProgress(100);
-                        Toast.makeText(getActivity(), "Level up!", Toast.LENGTH_SHORT).show();
-                        setText("LEVEL UP!\n\nClaim your prize over at fcbayern.de! \nRedirecting...");
-
-                        new CountDownTimer(4000, 10) {
-
-                            public void onTick(long millisUntilFinished) {
-                                //do nothing
-                            }
-
-                            public void onFinish() {
-                                String url = "http://www.fcbayern.de"; //TODO: Don't hardcode this, obviously
-                                Intent i = new Intent(Intent.ACTION_VIEW);
-                                i.setData(Uri.parse(url));
-                                startActivity(i);
-                            }
-                        }.start();
-                    }
-                }.start();
-
-            }
-        });
         // Inflate the layout for this fragment
         return view;
     }
@@ -79,5 +49,41 @@ public class PointsFragment extends Fragment{
         TextView textView = (TextView) getView().findViewById(R.id.textView);
         textView.setText(text);
     }
+
+
+    public void addPoints(final int pointsGained) {
+        final int originalScore = currentScore;
+        //((ViewPager) getActivity().findViewById(R.id.viewpager)).setCurrentItem(1);
+        donutProgress.setProgress(originalScore);
+        currentScore = originalScore + pointsGained;
+        if (originalScore + pointsGained >= 1000) {
+            setText("LEVEL UP!!! \nClaim your prize\nover at fcbayern.de!");
+            donutProgress.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String url = "http://www.fcbayern.de"; //TODO: Don't hardcode this, obviously
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                }
+            });
+        } else {
+            setText("You got " + pointsGained + " points!\nOnly " + (1000 - currentScore) + " to lvlup!");
+        }
+        new CountDownTimer(pointsGained, 20) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                donutProgress.setProgress(pointsGained - (int) millisUntilFinished);
+            }
+
+            @Override
+            public void onFinish() {
+                donutProgress.setProgress(currentScore);
+            }
+        }.start();
+    }
+
+
 
 }

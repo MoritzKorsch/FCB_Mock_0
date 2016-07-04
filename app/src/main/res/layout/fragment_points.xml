@@ -1,5 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/pointsFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="de.evolutionid.fcbmock0.MainActivity">
@@ -7,8 +9,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PointsFragment"
-        android:textSize="20dp"
+        android:text="@string/scan_product_to_get_points"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:id="@+id/textView"
         android:layout_above="@+id/donut_progress"
@@ -22,6 +24,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        app:donut_text_color="@color/colorAccent"
+        app:donut_suffix_text=""
+        app:donut_max="1000" />
 
 </RelativeLayout>

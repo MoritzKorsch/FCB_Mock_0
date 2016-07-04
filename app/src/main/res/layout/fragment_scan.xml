@@ -1,16 +1,59 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scanFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    tools:context="de.evolutionid.fcbmock0.MainActivity">
+    tools:context="de.evolutionid.fcbmock0.MainActivity"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/spnMode"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ready to scan NFC Tag!"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
+        android:padding="10dp" />
 
-</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/txtTagContentText"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:textSize="30sp"
+            android:minLines="1"
+            android:maxLines="5"
+            android:scrollbars = "vertical"/>
+
+        <LinearLayout
+            android:id="@+id/llTextToTag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/txtTagContentText"
+            android:layout_alignParentBottom="true">
+
+            <EditText
+                android:id="@+id/edtWriteToTag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:nextFocusUp="@id/edtWriteToTag"
+                android:nextFocusLeft="@id/edtWriteToTag"
+                android:inputType="text"/>
+
+            <Button
+                android:id="@+id/btnWriteText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_write" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
+

@@ -1,7 +1,13 @@
 <resources>
-    <string name="app_name">FCB Mock 0</string>
+    <string name="app_name">Scan Demo</string>
     <string name="action_settings">Settings</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rNoTextOnTag">[No Text on tag!]</string>
+    <string name="rNoRecordOnTag">[No records on Tag]</string>
+    <string name="scan_product_to_get_points">Scan your product to get points! \n</string>
+    <string name="btn_write">Write</string>
+    <string-array name="spnMode">
+        <item>Text</item>
+        <item>Points</item>
+        <item>Website</item>
+    </string-array>
 </resources>
